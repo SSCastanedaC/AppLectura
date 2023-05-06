@@ -1,0 +1,7 @@
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+emulator -list-avds
+emulator @Nexus_5_API_33
+---
+npx react-native start
