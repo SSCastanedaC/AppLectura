@@ -714,6 +714,8 @@ const abecedario = [
   },
 ];
 
+const palabras = [];
+
 export const contenido = [
   {
     id: 1,
@@ -735,18 +737,24 @@ export const contenido = [
   },
   {
     id: 4,
+    titulo: 'Mis Palabras',
+    completo: false,
+    opciones: palabras,
+  },
+  {
+    id: 5,
     titulo: 'Mis Primeras Frases',
     completo: false,
     opciones: frases,
   },
   {
-    id: 5,
+    id: 6,
     titulo: 'Mi Primer Libro',
     completo: false,
     opciones: libro,
   },
   {
-    id: 6,
+    id: 7,
     titulo: 'Abecedario',
     completo: false,
     opciones: abecedario,

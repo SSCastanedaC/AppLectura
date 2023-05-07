@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import {
+  Button,
   Checkbox,
   IconButton,
   Modal,
@@ -15,6 +16,8 @@ import {
   Snackbar,
   Surface,
   Text,
+  TextInput,
+  TouchableRipple,
 } from 'react-native-paper';
 import banner from '../../assets/banner.png';
 import {
@@ -23,8 +26,10 @@ import {
   Row,
   VerticalSpace,
 } from '../../components/elements/layout/layout';
+import Icon from 'react-native-vector-icons/Feather';
 import {dimensions} from '../../components/elements/styles/styles';
 import {contenido} from '../../utils/contenido';
+import theme from '../../components/foundations/theme';
 
 const CustomOption = ({...props}) => {
   return (
@@ -43,6 +48,8 @@ const Palabras = ({route, navigation}) => {
   const [opciones, setOpciones] = useState([]);
   const [ruta, setRuta] = useState(null);
   const [visibleModal, setVisibleModal] = useState(false);
+  const [visibleForm, setVisibleForm] = useState(false);
+  const [textForm, setTextForm] = useState('');
   const [visibleSnackbar, setVisibleSnackbar] = useState(false);
   const [palabra, setPalabra] = useState('');
   const [titulo, setTitulo] = useState('Aprender a Leer');
@@ -133,6 +140,49 @@ const Palabras = ({route, navigation}) => {
     setVisibleSnackbar(true);
   };
 
+  const agregarPalabra = () => {
+    setVisibleForm(true);
+    setTextForm('');
+  };
+
+  const submit = async () => {
+    const contenidoDB = JSON.parse(await AsyncStorage.getItem('contenido'));
+    var palabras = contenidoDB.find(x => x.titulo === 'Mis Palabras');
+    var opciones = palabras.opciones;
+    opciones.push({
+      titulo: textForm,
+      completo: false,
+      contenido: textForm,
+    });
+    palabras.opciones = opciones;
+    contenidoDB.palabras = palabras;
+    await AsyncStorage.setItem('contenido', JSON.stringify(contenidoDB));
+    crearOpciones();
+    setVisibleForm(false);
+  };
+
+  const eliminar = index => {
+    Alert.alert('¿Deseas eliminar la palabra?', '', [
+      {
+        text: 'No, cancelar',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'Si, eliminar', onPress: index => confirmarEliminar(index)},
+    ]);
+  };
+
+  const confirmarEliminar = async index => {
+    const contenidoDB = JSON.parse(await AsyncStorage.getItem('contenido'));
+    var palabras = contenidoDB.find(x => x.titulo === 'Mis Palabras');
+    var opciones = palabras.opciones;
+    opciones.splice(index, 1);
+    palabras.opciones = opciones;
+    contenidoDB.palabras = palabras;
+    await AsyncStorage.setItem('contenido', JSON.stringify(contenidoDB));
+    crearOpciones();
+  };
+
   return (
     <SafeAreaView>
       <View
@@ -192,37 +242,96 @@ const Palabras = ({route, navigation}) => {
                   <View key={index} style={{paddingVertical: 10}}>
                     <CustomOption>
                       <Container>
-                        <View
-                          style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            paddingVertical: 5,
-                          }}>
-                          <View
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              alignItems: 'center',
-                              gap: 5,
-                            }}>
-                            <Checkbox
-                              status={opcion.completo ? 'checked' : 'unchecked'}
-                              onPress={() => marcar(opcion.id)}
-                            />
-                            <Text variant="bodyLarge">{opcion.titulo}</Text>
-                          </View>
-                          <IconButton
-                            icon="chevron-right"
-                            size={20}
-                            onPress={() => continuar(opcion)}
-                          />
-                        </View>
+                        <Row>
+                          <Column width="70%">
+                            <View
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                paddingVertical: 5,
+                              }}>
+                              <View
+                                style={{
+                                  display: 'flex',
+                                  flexDirection: 'row',
+                                  alignItems: 'center',
+                                  gap: 5,
+                                }}>
+                                <Checkbox
+                                  status={
+                                    opcion.completo ? 'checked' : 'unchecked'
+                                  }
+                                  onPress={() => marcar(opcion.id)}
+                                />
+                                <Text variant="bodyLarge">{opcion.titulo}</Text>
+                              </View>
+                            </View>
+                          </Column>
+                          <Column width="30%">
+                            <View
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'flex-end',
+                              }}>
+                              {titulo === 'Mis Palabras' && (
+                                <IconButton
+                                  icon="delete"
+                                  size={20}
+                                  onPress={() => eliminar(index)}
+                                />
+                              )}
+                              <IconButton
+                                icon="chevron-right"
+                                size={20}
+                                onPress={() => continuar(opcion)}
+                              />
+                            </View>
+                          </Column>
+                        </Row>
                       </Container>
                     </CustomOption>
                   </View>
                 ))}
+                <VerticalSpace height={50} />
+              </Container>
+            )}
+            {titulo === 'Mis Palabras' && (
+              <Container>
+                <VerticalSpace height={20} />
+                <CustomOption>
+                  <TouchableRipple
+                    onPress={() => agregarPalabra()}
+                    rippleColor={theme.colors.primary + '00'}>
+                    <View style={{paddingVertical: 5}}>
+                      <View
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}>
+                        <Icon
+                          name="plus-circle"
+                          style={{
+                            paddingVertical: 5,
+                            fontSize: 32,
+                            color: theme.colors.primary,
+                          }}
+                        />
+                      </View>
+                      <View>
+                        <Text
+                          variant="bodyLarge"
+                          style={{textAlign: 'center', paddingVertical: 5}}>
+                          Agregar palabra
+                        </Text>
+                      </View>
+                    </View>
+                  </TouchableRipple>
+                </CustomOption>
                 <VerticalSpace height={50} />
               </Container>
             )}
@@ -277,6 +386,44 @@ const Palabras = ({route, navigation}) => {
                 {palabra}
               </Text>
             </View>
+          </View>
+        </Modal>
+        <Modal
+          visible={visibleForm}
+          onDismiss={() => setVisibleForm(false)}
+          contentContainerStyle={{flex: 1}}>
+          <View
+            style={{
+              display: 'flex',
+              width: '80%',
+              marginHorizontal: '10%',
+              paddingHorizontal: '10%',
+              //height: '50%',
+              paddingHorizontal: '10%',
+              backgroundColor: '#fff',
+              alignContent: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <VerticalSpace height={30} />
+            <TextInput
+              label="Palabra nueva"
+              value={textForm}
+              mode="outlined"
+              style={{
+                width: '100%',
+              }}
+              onChangeText={text => setTextForm(text)}
+            />
+            <VerticalSpace height={30} />
+            <Button
+              mode="contained"
+              textColor="#fafafa"
+              buttonColor={theme.colors.primary}
+              onPress={() => submit()}>
+              Agregar
+            </Button>
+            <VerticalSpace height={30} />
           </View>
         </Modal>
         <Snackbar
