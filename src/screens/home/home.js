@@ -31,11 +31,17 @@ const Home = ({navigation}) => {
               alignItems: 'center',
             }}>
             <VerticalSpace height={50} />
-            <Text
-              variant="headlineLarge"
-              style={{color: 'white', fontWeight: 'bold', textAlign: 'center'}}>
-              ¡Enseña a tus niños a leer con el Método de Glenn Doman!
-            </Text>
+            <Container>
+              <Text
+                variant="headlineLarge"
+                style={{
+                  color: 'white',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}>
+                ¡Enseña a tus niños a leer con el Método de Glenn Doman!
+              </Text>
+            </Container>
           </View>
           <View
             style={{
