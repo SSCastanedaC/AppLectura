@@ -147,7 +147,7 @@ const Menu = ({navigation}) => {
                 <View style={{paddingRight: '5%'}}>
                   <CustomCard>
                     <TouchableRipple
-                      onPress={() => console.log('Pressed')}
+                      onPress={() => navigation.navigate('Juego')}
                       rippleColor={theme.colors.primary + '00'}>
                       <View>
                         <View
@@ -217,44 +217,6 @@ const Menu = ({navigation}) => {
           </Container>
         </View>
       </View>
-      <Portal>
-        <FAB.Group
-          open={open}
-          visible
-          icon={open ? 'close' : 'help'}
-          color={theme.colors.secondary}
-          fabStyle={{
-            borderRadius: 100,
-          }}
-          variant="primary"
-          actions={[
-            {
-              icon: 'plus',
-              label: 'Add',
-              onPress: async () => await AsyncStorage.clear(),
-              color: theme.colors.secondary,
-            },
-            {
-              icon: 'star',
-              label: 'Star',
-              onPress: () => console.log('Pressed star'),
-              color: theme.colors.secondary,
-            },
-            {
-              icon: 'star',
-              label: 'Star',
-              onPress: () => console.log('Pressed star'),
-              color: theme.colors.secondary,
-            },
-          ]}
-          onStateChange={() => setOpen(!open)}
-          onPress={() => {
-            if (open) {
-              // do something if the speed dial is open
-            }
-          }}
-        />
-      </Portal>
     </SafeAreaView>
   );
 };
