@@ -60,7 +60,7 @@ Por último, se recomienda que los tutores sean pacientes y siempre aborden de m
 Primero deben presentarse las palabras "mamá" y "papá". Cuando el niño las haya aprendido, se debe continuar con las palabras del cuerpo: primero las de 4 letras, luego las de 3 letras, luego las de 5 letras y finalmente las de 6 letras. Mientras las palabras se muestran y se pronuncian, el niño debe tocar la parte del cuerpo correspondiente.
 Luego se debe continuar con el vocabulario doméstico, adaptando las palabras del vocabulario al entorno que sea familiar para el niño.\n
 Después se deben enseñar las primeras frases, que deben ser cortas y contener las palabras que el niño ya ha aprendido. Cuando el niño ya haya aprendido las frases, estará listo para leer su primer libro, aprendiendo a leer página por página.\n
-Finalmente, el niño debe aprender las letras del vocabulario.
+Finalmente, el niño debe aprender las letras del abecedario.
     `,
     img: img4,
   },
