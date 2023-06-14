@@ -1,30 +1,9 @@
-import {useCallback, useEffect, useState} from 'react';
-import {
-  Alert,
-  ImageBackground,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from 'react-native';
-import {
-  Banner,
-  Button,
-  Checkbox,
-  IconButton,
-  Modal,
-  Portal,
-  Snackbar,
-  Surface,
-  Text,
-  TextInput,
-  TouchableRipple,
-} from 'react-native-paper';
+import {useState} from 'react';
+import {View} from 'react-native';
+import {Button, Modal, TextInput} from 'react-native-paper';
 
 import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
-import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones/dimensiones';
 import EspacioVertical from 'AppGlennDoman/src/vista/componentes/atomos/espacioVertical';
-import Contenedor from 'AppGlennDoman/src/vista/componentes/moleculas/contenedor';
-import Encabezado from 'AppGlennDoman/src/vista/componentes/moleculas/encabezado';
 
 const ModalNuevaPalabra = ({visible, minimizar, guardar}) => {
   const [textForm, setTextForm] = useState('');

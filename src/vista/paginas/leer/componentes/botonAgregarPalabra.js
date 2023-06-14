@@ -1,9 +1,10 @@
-import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
-import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones';
-import Tarjeta from 'AppGlennDoman/src/vista/componentes/moleculas/tarjeta';
 import {View} from 'react-native';
 import {Text, TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
+
+import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
+import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones';
+import Tarjeta from 'AppGlennDoman/src/vista/componentes/moleculas/tarjeta';
 
 const BotonAgregarPalabra = ({presionar}) => {
   return (

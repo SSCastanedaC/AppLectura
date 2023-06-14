@@ -7,10 +7,15 @@ import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones/
 import EspacioVertical from 'AppGlennDoman/src/vista/componentes/atomos/espacioVertical';
 import Contenedor from 'AppGlennDoman/src/vista/componentes/moleculas/contenedor';
 import Encabezado from 'AppGlennDoman/src/vista/componentes/moleculas/encabezado';
-import {cargarContenido} from '../../../presentador/logicaAplicacion';
 import TarjetaError from './componentes/tarjetaError';
 import TarjetaRespuesta from './componentes/tarjetaRespuesta';
 import TarjetaVictoria from './componentes/tarjetaVictoria';
+
+import {
+  generarListaPalabras,
+  generarRespuestas,
+} from 'AppGlennDoman/src/modelo/logicaNegocio/jugar';
+import {cargarContenido} from 'AppGlennDoman/src/presentador/logicaAplicacion';
 
 const Jugar = ({navigation}) => {
   const [preguntas, setPreguntas] = useState([]);
@@ -21,49 +26,9 @@ const Jugar = ({navigation}) => {
   const [visibleVictoria, setVisibleVictoria] = useState(false);
 
   const crearPreguntas = async () => {
-    //Generar una lista unidimensional de aquellas palabras que tienen imagen
-    const generarListaPalabras = (obj, lista) => {
-      if (Array.isArray(obj)) {
-        obj.forEach(item => generarListaPalabras(item, lista));
-      } else if (
-        typeof obj === 'object' &&
-        obj !== null &&
-        !obj.hasOwnProperty('imagen')
-      ) {
-        Object.values(obj).forEach(val => generarListaPalabras(val, lista));
-      } else {
-        if (typeof obj === 'object') {
-          lista.push({
-            contenido: obj.contenido,
-            imagen: obj.imagen,
-          });
-        }
-      }
-      return lista;
-    };
     var contenidoDB = JSON.parse(await cargarContenido());
     var listaPalabras = generarListaPalabras(contenidoDB, []);
     setPreguntas(listaPalabras);
-  };
-
-  const crearRespuestas = numeroPregunta => {
-    var preguntasTemp = [...preguntas];
-    var respuestaCorrecta = preguntasTemp[numeroPregunta];
-    //Eliminar palabras duplicadas que pertenecen a dos o más categorías
-    preguntasTemp = Object.values(
-      preguntasTemp.reduce((acc, cur) => {
-        acc[cur.contenido] = acc[cur.contenido] || cur;
-        return acc;
-      }, {}),
-    );
-    preguntasTemp = preguntasTemp.filter(
-      pregunta => pregunta.contenido !== respuestaCorrecta.contenido,
-    );
-    preguntasTemp.sort(() => Math.random() - 0.5);
-    var respuestas = preguntasTemp.slice(0, 2);
-    respuestas.push({...respuestaCorrecta, correcta: true});
-    respuestas.sort(() => Math.random() - 0.5);
-    setRespuestas(respuestas);
   };
 
   const responder = opcionSeleccionada => {
@@ -84,7 +49,7 @@ const Jugar = ({navigation}) => {
     setVisibleError(false);
     setVisibleVictoria(false);
     setNumeroPregunta(0);
-    crearRespuestas(numeroPregunta);
+    setRespuestas(generarRespuestas(preguntas, numeroPregunta));
   };
 
   useEffect(() => {
@@ -94,7 +59,7 @@ const Jugar = ({navigation}) => {
   useEffect(() => {
     !isNaN(numeroPregunta) &&
       preguntas.length > 0 &&
-      crearRespuestas(numeroPregunta);
+      setRespuestas(generarRespuestas(preguntas, numeroPregunta));
   }, [preguntas, numeroPregunta]);
 
   return (

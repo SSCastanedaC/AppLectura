@@ -7,16 +7,16 @@ import EspacioVertical from 'AppGlennDoman/src/vista/componentes/atomos/espacioV
 import Contenedor from 'AppGlennDoman/src/vista/componentes/moleculas/contenedor';
 import Encabezado from 'AppGlennDoman/src/vista/componentes/moleculas/encabezado';
 import BotonAgregarPalabra from './componentes/botonAgregarPalabra';
+import BotonVerPalabra from './componentes/botonVerPalabra';
 import ModalLectura from './componentes/modalLectura';
 import ModalNuevaPalabra from './componentes/modalNuevaPalabra';
 
 import {
   actualizarEstadoPalabra,
-  cargarContenido,
   eliminarPalabra,
   guardarPalabra,
-} from '../../../presentador/logicaAplicacion';
-import BotonVerPalabra from './componentes/botonVerPalabra';
+} from 'AppGlennDoman/src/modelo/logicaNegocio/leer';
+import {cargarContenido} from 'AppGlennDoman/src/presentador/logicaAplicacion';
 
 const Leer = ({route, navigation}) => {
   const [ruta, setRuta] = useState([]);
@@ -69,7 +69,7 @@ const Leer = ({route, navigation}) => {
     } else {
       var ruta_temp = ruta;
       ruta_temp.push(opcion.id);
-      navigation.push('Palabras', {ruta: ruta_temp});
+      navigation.push('Leer', {ruta: ruta_temp});
     }
   };
 
@@ -104,7 +104,7 @@ const Leer = ({route, navigation}) => {
 
   const marcar = async id => {
     var ruta = params.ruta;
-    nuevoEstado = await actualizarEstadoPalabra(ruta, id);
+    var nuevoEstado = await actualizarEstadoPalabra(ruta, id);
     crearOpciones();
     var mensajeSnackbar = nuevoEstado
       ? 'Marcado como leído'

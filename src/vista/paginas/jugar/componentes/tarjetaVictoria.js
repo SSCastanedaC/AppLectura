@@ -4,7 +4,7 @@ import {Button, Modal, Text} from 'react-native-paper';
 import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores/colores';
 import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones/dimensiones';
 import EspacioVertical from 'AppGlennDoman/src/vista/componentes/atomos/espacioVertical/espacioVertical';
-import trofeo from '../../../recursos/jugar/trofeo.png';
+import trofeo from 'AppGlennDoman/src/vista/recursos/jugar/trofeo.png';
 
 const TarjetaVictoria = ({visible, minimizar, reintentar}) => {
   return (

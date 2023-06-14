@@ -1,28 +1,11 @@
-import {
-  Alert,
-  ImageBackground,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from 'react-native';
-import {
-  Banner,
-  Button,
-  Checkbox,
-  IconButton,
-  Modal,
-  Portal,
-  Snackbar,
-  Surface,
-  Text,
-  TextInput,
-  TouchableRipple,
-} from 'react-native-paper';
-import Tarjeta from 'AppGlennDoman/src/vista/componentes/moleculas/tarjeta';
-import Fila from 'AppGlennDoman/src/vista/componentes/moleculas/fila';
-import Columna from 'AppGlennDoman/src/vista/componentes/moleculas/columna';
+import {View} from 'react-native';
+import {Checkbox, IconButton, Text} from 'react-native-paper';
+
 import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones';
+import Columna from 'AppGlennDoman/src/vista/componentes/moleculas/columna';
 import Contenedor from 'AppGlennDoman/src/vista/componentes/moleculas/contenedor';
+import Fila from 'AppGlennDoman/src/vista/componentes/moleculas/fila';
+import Tarjeta from 'AppGlennDoman/src/vista/componentes/moleculas/tarjeta';
 
 const BotonVerPalabra = ({
   index,

@@ -1,12 +1,10 @@
 import {useRef, useState} from 'react';
 import {Animated, SafeAreaView, StyleSheet, View} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
 import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones/dimensiones';
 import Encabezado from 'AppGlennDoman/src/vista/componentes/moleculas/encabezado';
-import Tarjeta from './componentes/tarjeta';
 import Marcador from './componentes/marcador';
+import Tarjeta from './componentes/tarjeta';
 import contenido from './contenido';
 
 const Tutorial = ({navigation}) => {

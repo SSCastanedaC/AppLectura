@@ -1,6 +1,7 @@
-import Tarjeta from '../../../componentes/moleculas/tarjeta/tarjeta';
 import {Image, View} from 'react-native';
 import {Text, TouchableRipple} from 'react-native-paper';
+
+import Tarjeta from 'AppGlennDoman/src/vista/componentes/moleculas/tarjeta';
 import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
 
 const BotonSecundario = ({titulo, imagen, presionar}) => {

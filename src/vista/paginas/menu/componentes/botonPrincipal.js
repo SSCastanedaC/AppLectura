@@ -1,9 +1,10 @@
-import Tarjeta from 'AppGlennDoman/src/vista/componentes/moleculas/tarjeta';
-import Columna from 'AppGlennDoman/src/vista/componentes/moleculas/columna';
-import Fila from 'AppGlennDoman/src/vista/componentes/moleculas/fila';
 import {Image, View} from 'react-native';
 import {Text, TouchableRipple} from 'react-native-paper';
+
 import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
+import Columna from 'AppGlennDoman/src/vista/componentes/moleculas/columna';
+import Fila from 'AppGlennDoman/src/vista/componentes/moleculas/fila';
+import Tarjeta from 'AppGlennDoman/src/vista/componentes/moleculas/tarjeta';
 
 const BotonPrincipal = ({titulo, subtitulo, imagen, presionar}) => {
   return (

@@ -1,11 +1,7 @@
 import {View} from 'react-native';
 import {Modal, Text} from 'react-native-paper';
 
-import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
 import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones/dimensiones';
-import EspacioVertical from 'AppGlennDoman/src/vista/componentes/atomos/espacioVertical';
-import Contenedor from 'AppGlennDoman/src/vista/componentes/moleculas/contenedor';
-import Encabezado from 'AppGlennDoman/src/vista/componentes/moleculas/encabezado';
 
 const ModalLectura = ({visible, minimizar, titulo, palabra}) => {
   return (

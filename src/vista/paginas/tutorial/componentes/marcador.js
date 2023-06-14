@@ -1,7 +1,8 @@
-import {Animated, SafeAreaView, StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones/dimensiones';
+
 import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
+import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones';
 
 const Marcador = ({contenido, index}) => {
   return (

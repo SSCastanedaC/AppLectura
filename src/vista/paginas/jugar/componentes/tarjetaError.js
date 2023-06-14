@@ -4,7 +4,7 @@ import {Button, Modal, Text} from 'react-native-paper';
 import colores from 'AppGlennDoman/src/vista/componentes/atomos/colores';
 import dimensiones from 'AppGlennDoman/src/vista/componentes/atomos/dimensiones';
 import EspacioVertical from 'AppGlennDoman/src/vista/componentes/atomos/espacioVertical';
-import error from '../../../recursos/jugar/error.png';
+import error from 'AppGlennDoman/src/vista/recursos/jugar/error.png';
 
 const TarjetaError = ({visible, puntaje, minimizar, reintentar}) => {
   return (
