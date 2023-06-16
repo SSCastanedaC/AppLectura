@@ -21,9 +21,9 @@ export const removerPalabra = (lista, indice) => {
   return listaOriginal;
 };
 
-export const cambiarEstadoPalabra = (lista, idPalabra) => {
+export const cambiarEstadoPalabra = (lista, index) => {
   var contenidoTemp = lista;
-  contenidoTemp = contenidoTemp.find(x => x.id === idPalabra);
+  contenidoTemp = contenidoTemp[index];
   contenidoTemp.completo = !contenidoTemp.completo;
   return contenidoTemp;
 };
@@ -51,14 +51,14 @@ export const eliminarPalabra = async index => {
   return true;
 };
 
-export const actualizarEstadoPalabra = async (ruta, idPalabra) => {
+export const actualizarEstadoPalabra = async (ruta, index) => {
   var contenidoDB = JSON.parse(await cargarContenido());
   var nuevoContenido = [...contenidoDB];
   var contenidoTemp = [...nuevoContenido];
   for (var id of ruta) {
     var contenidoTemp = contenidoTemp.find(x => x.id === id).opciones;
   }
-  contenidoTemp = cambiarEstadoPalabra(contenidoTemp, idPalabra);
+  contenidoTemp = cambiarEstadoPalabra(contenidoTemp, index);
   await actualizarContenido(nuevoContenido);
   var nuevoEstado = contenidoTemp.completo;
   return nuevoEstado;
