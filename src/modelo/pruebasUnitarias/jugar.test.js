@@ -190,7 +190,6 @@ describe('generarRespuestas', () => {
 
 describe('generarListaPalabras', () => {
   it('Obtiene los nodos inferiores de una estructura recursiva tipo árbol cuando los nodos tienen el elemento "imagen"', () => {
-    const indice = 3;
     const resultadoPrueba = generarListaPalabras(arbol, []);
     expect(resultadoPrueba.length).toBe(10);
   });

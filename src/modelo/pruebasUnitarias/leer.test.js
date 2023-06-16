@@ -103,7 +103,7 @@ describe('removerPalabra', () => {
 });
 
 describe('cambiarEstadoPalabra', () => {
-  it('Cambia el estado de un elemento de un array basado en su ID', () => {
+  it('Cambia el estado de un elemento de un array basado en su índice', () => {
     const lista = [
       {
         id: 1,
@@ -124,17 +124,17 @@ describe('cambiarEstadoPalabra', () => {
         titulo: 'Final',
       },
     ];
-    const idPalabra = 3;
+    const indice = 2;
     const salidaEsperada = {
       id: 3,
       completo: false,
       contenido: 'Final',
       titulo: 'Final',
     };
-    const resultadoPrueba = cambiarEstadoPalabra(lista, idPalabra);
+    const resultadoPrueba = cambiarEstadoPalabra(lista, indice);
     expect(resultadoPrueba).toStrictEqual(salidaEsperada);
   });
-  it('Cambia el estado de un elemento de un array basado en su ID', () => {
+  it('Cambia el estado de un elemento de un array basado en su índice', () => {
     const lista = [
       {
         id: 1,
@@ -155,7 +155,7 @@ describe('cambiarEstadoPalabra', () => {
         titulo: 'Final',
       },
     ];
-    const idPalabra = 1;
+    const indice = 0;
     const salidaEsperada = {
       id: 1,
       completo: true,
@@ -163,10 +163,10 @@ describe('cambiarEstadoPalabra', () => {
       titulo: 'Prueba',
     };
 
-    const resultadoPrueba = cambiarEstadoPalabra(lista, idPalabra);
+    const resultadoPrueba = cambiarEstadoPalabra(lista, indice);
     expect(resultadoPrueba).toStrictEqual(salidaEsperada);
   });
-  it('Cambia el estado de un elemento de un array basado en su ID', () => {
+  it('Cambia el estado de un elemento de un array basado en su índice', () => {
     const lista = [
       {
         id: 1,
@@ -187,14 +187,14 @@ describe('cambiarEstadoPalabra', () => {
         titulo: 'Final',
       },
     ];
-    const idPalabra = 2;
+    const indice = 1;
     const salidaEsperada = {
       id: 2,
       completo: true,
       contenido: 'Test',
       titulo: 'Test',
     };
-    const resultadoPrueba = cambiarEstadoPalabra(lista, idPalabra);
+    const resultadoPrueba = cambiarEstadoPalabra(lista, indice);
     expect(resultadoPrueba).toStrictEqual(salidaEsperada);
   });
 });
