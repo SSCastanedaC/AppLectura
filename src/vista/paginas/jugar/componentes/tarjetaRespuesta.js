@@ -8,10 +8,9 @@ import Tarjeta from 'AppGlennDoman/src/vista/componentes/moleculas/tarjeta';
 
 const TarjetaRespuesta = ({respuesta, responder}) => {
   return (
-    <View style={{height: 0.15 * dimensiones.totalAncho}}>
+    <View>
       <Tarjeta>
         <TouchableRipple
-          style={{height: '100%'}}
           onPress={() => responder(respuesta)}
           rippleColor={colores.colors.primary + '00'}>
           <Contenedor>
