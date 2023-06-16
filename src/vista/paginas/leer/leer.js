@@ -87,14 +87,18 @@ const Leer = ({route, navigation}) => {
   };
 
   const eliminar = indice => {
-    Alert.alert('¿Deseas eliminar la palabra?', '', [
-      {
-        text: 'No, cancelar',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      {text: 'Si, eliminar', onPress: indice => confirmarEliminar(indice)},
-    ]);
+    Alert.alert(
+      '¿Deseas eliminar la palabra: ' + opciones[indice].titulo + '?',
+      '',
+      [
+        {
+          text: 'No, cancelar',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'Si, eliminar', onPress: () => confirmarEliminar(indice)},
+      ],
+    );
   };
 
   //Crear menú
@@ -102,9 +106,9 @@ const Leer = ({route, navigation}) => {
     crearOpciones();
   }, []);
 
-  const marcar = async id => {
+  const marcar = async index => {
     var ruta = params.ruta;
-    var nuevoEstado = await actualizarEstadoPalabra(ruta, id);
+    var nuevoEstado = await actualizarEstadoPalabra(ruta, index);
     crearOpciones();
     var mensajeSnackbar = nuevoEstado
       ? 'Marcado como leído'
@@ -138,7 +142,7 @@ const Leer = ({route, navigation}) => {
                       index={index}
                       opcion={opcion}
                       presionarContinuar={() => continuar(opcion)}
-                      presionarMarcar={id => marcar(id)}
+                      presionarMarcar={() => marcar(index)}
                       presionarEliminar={
                         titulo === 'Mis Palabras' ? () => eliminar(index) : null
                       }

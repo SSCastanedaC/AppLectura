@@ -15,7 +15,7 @@ const BotonVerPalabra = ({
   presionarEliminar,
 }) => {
   return (
-    <View style={{height: 0.15 * dimensiones.totalAncho}}>
+    <View>
       <Tarjeta>
         <Contenedor>
           <Fila>
@@ -37,7 +37,7 @@ const BotonVerPalabra = ({
                   }}>
                   <Checkbox
                     status={opcion.completo ? 'checked' : 'unchecked'}
-                    onPress={() => presionarMarcar(opcion.id)}
+                    onPress={() => presionarMarcar()}
                   />
                   <Text variant="bodyLarge">{opcion.titulo}</Text>
                 </View>
